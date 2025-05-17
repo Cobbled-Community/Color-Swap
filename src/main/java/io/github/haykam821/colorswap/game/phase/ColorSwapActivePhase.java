@@ -123,7 +123,7 @@ public class ColorSwapActivePhase {
 			activity.listen(GameActivityEvents.ENABLE, active::enable);
 			activity.listen(GameActivityEvents.TICK, active::tick);
 			activity.listen(GamePlayerEvents.ACCEPT, active::onAcceptPlayer);
-			activity.listen(GamePlayerEvents.OFFER, JoinOffer::accept);
+			activity.listen(GamePlayerEvents.OFFER, JoinOffer::acceptSpectators);
 			activity.listen(GamePlayerEvents.REMOVE, active::removePlayer);
 			activity.listen(PlayerDamageEvent.EVENT, active::onPlayerDamage);
 			activity.listen(PlayerDeathEvent.EVENT, active::onPlayerDeath);
@@ -150,6 +150,11 @@ public class ColorSwapActivePhase {
 			}
 
 			index++;
+		}
+
+		for (ServerPlayerEntity player : this.gameSpace.getPlayers().spectators()) {
+			ColorSwapActivePhase.spawn(this.world, this.map.getSpectatorSpawnPos(), 0, player);
+			this.setSpectator(player);
 		}
 	}
 
