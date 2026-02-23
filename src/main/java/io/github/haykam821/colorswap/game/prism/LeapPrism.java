@@ -13,6 +13,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.collection.Pool;
 import net.minecraft.util.math.Vec3d;
 
 public class LeapPrism extends Prism {
@@ -26,7 +27,7 @@ public class LeapPrism extends Prism {
 	@Override
 	public boolean activate(ColorSwapActivePhase phase, ServerPlayerEntity player) {
 		Vec3d velocity = LeapPrism.getLeapVelocity(player);
-		Packet<?> packet = new ExplosionS2CPacket(Vec3d.ZERO, Optional.of(velocity), ParticleTypes.EXPLOSION, INTENTIONALLY_EMPTY);
+		Packet<?> packet = new ExplosionS2CPacket(Vec3d.ZERO, 0, 0, Optional.of(velocity), ParticleTypes.EXPLOSION, INTENTIONALLY_EMPTY, Pool.empty());
 
 		player.networkHandler.sendPacket(packet);
 		phase.getWorld().playSoundFromEntity(null, player, SoundEvents.ENTITY_HORSE_SADDLE.value(), SoundCategory.PLAYERS, 0.3f, 1.1f);

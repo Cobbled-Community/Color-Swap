@@ -11,12 +11,13 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import xyz.nucleoid.plasmid.api.game.GameType;
+import xyz.nucleoid.plasmid.api.game.GameTypes;
 
 public class Main implements ModInitializer {
 	private static final String MOD_ID = "colorswap";
 
 	private static final Identifier COLOR_SWAP_ID = Main.identifier("color_swap");
-	public static final GameType<ColorSwapConfig> COLOR_SWAP_TYPE = GameType.register(COLOR_SWAP_ID, ColorSwapConfig.CODEC, ColorSwapWaitingPhase::open);
+	public static final GameType<ColorSwapConfig> COLOR_SWAP_TYPE = GameTypes.register(COLOR_SWAP_ID, ColorSwapConfig.CODEC, ColorSwapWaitingPhase::open);
 
 	private static final Identifier PLATFORM_BLOCKS_ID = Main.identifier("platform_blocks");
 	public static final TagKey<Block> PLATFORM_BLOCKS = TagKey.of(RegistryKeys.BLOCK, PLATFORM_BLOCKS_ID);

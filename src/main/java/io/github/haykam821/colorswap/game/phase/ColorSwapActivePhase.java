@@ -26,6 +26,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.packet.s2c.play.PlaySoundFromEntityS2CPacket;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -196,7 +198,7 @@ public class ColorSwapActivePhase {
 		ColorSwapMapConfig mapConfig = this.config.getMapConfig();
 
  		for (ServerPlayerEntity player : this.gameSpace.getPlayers()) {
-			player.playSoundToPlayer(this.config.getSwapSound(), SoundCategory.BLOCKS, 1, 1.5f);
+			player.networkHandler.sendPacket(new PlaySoundFromEntityS2CPacket(RegistryEntry.of(this.config.getSwapSound()), SoundCategory.BLOCKS, player, 1, 1.5f, world.getRandom().nextLong()));
 		}
 
 		BlockPos.Mutable pos = new BlockPos.Mutable();
