@@ -3,6 +3,7 @@ package io.github.haykam821.colorswap.game.map;
 import io.github.haykam821.colorswap.game.ColorSwapConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
 import xyz.nucleoid.map_templates.BlockBounds;
 import xyz.nucleoid.map_templates.MapTemplate;
 
@@ -25,7 +26,7 @@ public class ColorSwapMapBuilder {
 		);
 
 		for (BlockPos pos : platform) {
-			template.setBlockState(pos, this.config.getMapConfig().initialStateProvider.getState(random, pos));
+			template.setBlockState(pos, this.config.getMapConfig().initialStateProvider);
 		}
 
 		return new ColorSwapMap(template, platform, mapConfig.spawnRadiusPadding);

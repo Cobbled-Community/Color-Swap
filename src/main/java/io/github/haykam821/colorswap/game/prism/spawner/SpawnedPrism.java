@@ -61,7 +61,7 @@ public class SpawnedPrism {
 		this.config = config;
 		this.prism = prism;
 
-		RandomSource random = spawner.getPhase().getWorld().getRandom();
+		RandomSource random = spawner.getPhase().getLevel().getRandom();
 		double size = config.size().sample(random);
 
 		this.pos = new Vec3(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
@@ -95,7 +95,7 @@ public class SpawnedPrism {
 		this.updateDisplays();
 
 		ColorSwapActivePhase phase = this.spawner.getPhase();
-		this.attachment = ChunkAttachment.of(this.holder, phase.getWorld(), this.pos);
+		this.attachment = ChunkAttachment.of(this.holder, phase.getLevel(), this.pos);
 	}
 
 	public void remove() {
@@ -134,7 +134,7 @@ public class SpawnedPrism {
 	}
 
 	private void updateDisplays() {
-		long time = this.spawner.getPhase().getWorld().getGameTime();
+		long time = this.spawner.getPhase().getLevel().getGameTime();
 		float angle = time / 10f;
 
 		Quaternionf rotation = new Quaternionf()
@@ -154,19 +154,19 @@ public class SpawnedPrism {
 
 	private void spawnParticles() {
 		ColorSwapActivePhase phase = this.spawner.getPhase();
-		RandomSource random = phase.getWorld().getRandom();
+		RandomSource random = phase.getLevel().getRandom();
 
 		double x = this.box.minX + random.nextDouble() * this.box.getXsize();
 		double y = this.box.minY + random.nextDouble() * this.box.getYsize();
 		double z = this.box.minZ + random.nextDouble() * this.box.getZsize();
 
-		phase.getWorld().sendParticles(PARTICLE, x, y, z, 1, 0, 0, 0, 0);
+		phase.getLevel().sendParticles(PARTICLE, x, y, z, 1, 0, 0, 0, 0);
 	}
 
 	public void tick() {
 		ColorSwapActivePhase phase = this.spawner.getPhase();
 		for (PlayerRef ref : phase.getPlayers()) {
-			ServerPlayer player = ref.getEntity(phase.getWorld());
+			ServerPlayer player = ref.getEntity(phase.getLevel());
 
 			if (this.tryCollect(player)) {
 				this.remove();

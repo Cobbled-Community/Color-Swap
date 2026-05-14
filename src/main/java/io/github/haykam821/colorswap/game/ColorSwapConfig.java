@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.valueproviders.IntProviders;
 import xyz.nucleoid.plasmid.api.game.common.config.WaitingLobbyConfig;
 
 public class ColorSwapConfig {
@@ -21,7 +22,7 @@ public class ColorSwapConfig {
         WaitingLobbyConfig.CODEC.fieldOf("players").forGetter(ColorSwapConfig::getPlayerConfig),
         PrismConfig.CODEC.optionalFieldOf("prisms").forGetter(ColorSwapConfig::getPrismConfig),
         Codec.INT.optionalFieldOf("guide_ticks", SharedConstants.TICKS_PER_SECOND * 10).forGetter(ColorSwapConfig::getGuideTicks),
-        IntProvider.NON_NEGATIVE_CODEC.optionalFieldOf("ticks_until_close", ConstantInt.of(SharedConstants.TICKS_PER_SECOND * 5)).forGetter(ColorSwapConfig::getTicksUntilClose),
+        IntProviders.NON_NEGATIVE_CODEC.optionalFieldOf("ticks_until_close", ConstantInt.of(SharedConstants.TICKS_PER_SECOND * 5)).forGetter(ColorSwapConfig::getTicksUntilClose),
         SoundEvent.DIRECT_CODEC.optionalFieldOf("swap_sound", SoundEvents.NOTE_BLOCK_SNARE.value()).forGetter(ColorSwapConfig::getSwapSound),
         Codec.INT.optionalFieldOf("swap_time", -1).forGetter(ColorSwapConfig::getSwapTime),
         Codec.INT.optionalFieldOf("erase_time", -1).forGetter(ColorSwapConfig::getEraseTime),

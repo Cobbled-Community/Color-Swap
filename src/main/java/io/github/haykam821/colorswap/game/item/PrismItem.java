@@ -3,11 +3,12 @@ package io.github.haykam821.colorswap.game.item;
 import eu.pb4.polymer.core.api.item.PolymerItem;
 import io.github.haykam821.colorswap.game.component.PrismComponent;
 import io.github.haykam821.colorswap.game.prism.Prism;
+import net.fabricmc.fabric.api.networking.v1.context.PacketContext;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.resources.Identifier;
-import xyz.nucleoid.packettweaker.PacketContext;
 
 public class PrismItem extends Item implements PolymerItem {
 	public PrismItem(Item.Properties settings) {
@@ -21,7 +22,7 @@ public class PrismItem extends Item implements PolymerItem {
 	}
 
 	@Override
-	public Identifier getPolymerItemModel(ItemStack stack, PacketContext context) {
+	public Identifier getPolymerItemModel(ItemStack stack, PacketContext context, HolderLookup.Provider lookup) {
 		return null;
 	}
 }

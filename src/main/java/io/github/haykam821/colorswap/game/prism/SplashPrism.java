@@ -23,7 +23,7 @@ public class SplashPrism extends Prism {
 			return false;
 		}
 
-		ServerLevel world = phase.getWorld();
+		ServerLevel world = phase.getLevel();
 		BlockState state = swapBlock.defaultBlockState();
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 

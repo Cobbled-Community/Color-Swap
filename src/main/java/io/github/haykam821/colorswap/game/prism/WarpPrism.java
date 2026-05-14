@@ -25,7 +25,7 @@ public class WarpPrism extends Prism {
 		}
 
 		if (hit.getType() != HitResult.Type.MISS && player.randomTeleport(pos.x(), pos.y(), pos.z(), true)) {
-			phase.getWorld().playSound(null, player, SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.3f, 1);
+			phase.getLevel().playSound(null, player, SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.3f, 1);
 			return true;
 		} else {
 			return false;

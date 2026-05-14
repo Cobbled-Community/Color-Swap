@@ -6,10 +6,7 @@ import java.util.List;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.util.valueproviders.ConstantFloat;
-import net.minecraft.util.valueproviders.FloatProvider;
-import net.minecraft.util.valueproviders.IntProvider;
-import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.util.valueproviders.*;
 
 public record PrismConfig(
         int spawnPadding,
@@ -22,7 +19,7 @@ public record PrismConfig(
         Codec.INT.optionalFieldOf("spawn_padding", 3).forGetter(PrismConfig::spawnPadding),
         Codec.INT.optionalFieldOf("maximum_held", 1).forGetter(PrismConfig::maximumHeld),
         Prisms.REGISTRY.listOf().fieldOf("randomly_spawnable").orElseGet(() -> new ArrayList<>(Prisms.REGISTRY.values())).forGetter(PrismConfig::randomlySpawnable),
-        IntProvider.POSITIVE_CODEC.optionalFieldOf("rounds_between_spawns", UniformInt.of(2, 4)).forGetter(PrismConfig::roundsBetweenSpawns),
-        FloatProvider.codec(0, Float.MAX_VALUE).optionalFieldOf("size", ConstantFloat.of(2.2f)).forGetter(PrismConfig::size)
+        IntProviders.POSITIVE_CODEC.optionalFieldOf("rounds_between_spawns", UniformInt.of(2, 4)).forGetter(PrismConfig::roundsBetweenSpawns),
+        FloatProviders.codec(0, Float.MAX_VALUE).optionalFieldOf("size", ConstantFloat.of(2.2f)).forGetter(PrismConfig::size)
     ).apply(instance, PrismConfig::new));
 }

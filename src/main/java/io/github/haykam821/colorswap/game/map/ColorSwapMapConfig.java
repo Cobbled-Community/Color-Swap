@@ -12,6 +12,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 public class ColorSwapMapConfig {
@@ -21,8 +22,8 @@ public class ColorSwapMapConfig {
             Codec.INT.optionalFieldOf("x_scale", 3).forGetter(config -> config.xScale),
             Codec.INT.optionalFieldOf("z_scale", 3).forGetter(config -> config.zScale),
             Codec.DOUBLE.optionalFieldOf("spawn_radius_padding", 4d).forGetter(config -> config.spawnRadiusPadding),
-            BlockStateProvider.CODEC.optionalFieldOf("initial_state_provider", BlockStateProvider.simple(Blocks.WHITE_WOOL)).forGetter(config -> config.initialStateProvider),
-            BlockStateProvider.CODEC.optionalFieldOf("erased_state_provider", BlockStateProvider.simple(Blocks.AIR)).forGetter(config -> config.erasedStateProvider),
+            BlockState.CODEC.optionalFieldOf("initial_state_provider", Blocks.WHITE_WOOL.defaultBlockState()).forGetter(config -> config.initialStateProvider),
+            BlockState.CODEC.optionalFieldOf("erased_state_provider", Blocks.AIR.defaultBlockState()).forGetter(config -> config.erasedStateProvider),
             RegistryCodecs.homogeneousList(Registries.BLOCK).fieldOf("platform_blocks").forGetter(config -> config.platformBlocks)
     ).apply(instance, ColorSwapMapConfig::new));
 
@@ -31,11 +32,11 @@ public class ColorSwapMapConfig {
 	public final int xScale;
 	public final int zScale;
 	public final double spawnRadiusPadding;
-	public final BlockStateProvider initialStateProvider;
-	public final BlockStateProvider erasedStateProvider;
+	public final BlockState initialStateProvider;
+	public final BlockState erasedStateProvider;
 	private final HolderSet<Block> platformBlocks;
 
-	public ColorSwapMapConfig(int x, int z, int xScale, int zScale, double spawnRadiusPadding, BlockStateProvider initialStateProvider, BlockStateProvider erasedStateProvider, HolderSet<Block> platformBlocks) {
+	public ColorSwapMapConfig(int x, int z, int xScale, int zScale, double spawnRadiusPadding, BlockState initialStateProvider, BlockState erasedStateProvider, HolderSet<Block> platformBlocks) {
 		this.x = x;
 		this.z = z;
 		this.xScale = xScale;
