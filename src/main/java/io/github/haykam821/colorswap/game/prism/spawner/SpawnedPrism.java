@@ -38,7 +38,7 @@ public class SpawnedPrism {
 	private static final float ITEM_SCALE = 0.6f;
 	private static final float ITEM_SCALE_VARIANCE = 0.05f;
 
-	private static final ItemStack CRYSTAL_STACK = createGlintStack(Items.WHITE_STAINED_GLASS);
+	private static final ItemStack CRYSTAL_STACK = createGlintStack(Items.STAINED_GLASS.white());
 	private static final float CRYSTAL_SCALE = 0.8f;
 
 	private static final ParticleOptions PARTICLE = ParticleTypes.SNOWFLAKE;

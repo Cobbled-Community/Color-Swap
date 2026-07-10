@@ -22,7 +22,7 @@ public class ColorSwapMapConfig {
             Codec.INT.optionalFieldOf("x_scale", 3).forGetter(config -> config.xScale),
             Codec.INT.optionalFieldOf("z_scale", 3).forGetter(config -> config.zScale),
             Codec.DOUBLE.optionalFieldOf("spawn_radius_padding", 4d).forGetter(config -> config.spawnRadiusPadding),
-            BlockState.CODEC.optionalFieldOf("initial_state_provider", Blocks.WHITE_WOOL.defaultBlockState()).forGetter(config -> config.initialStateProvider),
+            BlockState.CODEC.optionalFieldOf("initial_state_provider", Blocks.WOOL.white().defaultBlockState()).forGetter(config -> config.initialStateProvider),
             BlockState.CODEC.optionalFieldOf("erased_state_provider", Blocks.AIR.defaultBlockState()).forGetter(config -> config.erasedStateProvider),
             RegistryCodecs.homogeneousList(Registries.BLOCK).fieldOf("platform_blocks").forGetter(config -> config.platformBlocks)
     ).apply(instance, ColorSwapMapConfig::new));

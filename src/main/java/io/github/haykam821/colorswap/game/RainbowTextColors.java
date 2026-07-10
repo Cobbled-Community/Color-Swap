@@ -8,15 +8,16 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.ChatFormatting;
 import net.minecraft.util.Util;
 import net.minecraft.util.RandomSource;
+import org.jetbrains.annotations.UnknownNullability;
 
 public final class RainbowTextColors {
-	private static final List<Style> STYLES = createStyles(new int[] {
-		ChatFormatting.RED.getColor(),
-		ChatFormatting.GOLD.getColor(),
-		ChatFormatting.YELLOW.getColor(),
-		ChatFormatting.GREEN.getColor(),
-		ChatFormatting.BLUE.getColor(),
-		ChatFormatting.LIGHT_PURPLE.getColor(),
+	private static final List<Style> STYLES = createStyles(new ChatFormatting[] {
+		ChatFormatting.RED,
+		ChatFormatting.GOLD,
+		ChatFormatting.YELLOW,
+		ChatFormatting.GREEN,
+		ChatFormatting.BLUE,
+		ChatFormatting.LIGHT_PURPLE,
 	});
 
 	private RainbowTextColors() {
@@ -35,10 +36,10 @@ public final class RainbowTextColors {
 		return STYLES.get((STYLES.indexOf(style) + 1) % STYLES.size());
 	}
 
-	private static List<Style> createStyles(int[] colors) {
+	private static List<Style> createStyles(ChatFormatting @UnknownNullability [] colors) {
 		ImmutableList.Builder<Style> styles = ImmutableList.builderWithExpectedSize(colors.length);
 
-		for (int color : colors) {
+		for (ChatFormatting color : colors) {
 			styles.add(Style.EMPTY.withColor(color));
 		}
 
